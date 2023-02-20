@@ -1,4 +1,5 @@
 package ru.tele2.tests;
+import com.codeborne.selenide.SelenideElement;
 import com.trudvsem.config.UserCreds;
 import com.trudvsem.pages.RegistrationPageRT;
 import org.junit.jupiter.api.DisplayName;
@@ -73,51 +74,61 @@ public class Tele2Test extends TestBase{
     }
 
     @Test
-    @DisplayName("Проверка страницы  [Создание вакансии]")
-    void rtportalNewVacancyTests() {
-        step("Авторизация работодателя",
-                RegistrationPageRT::openPageRegRT);
-        step("Ожидаем, пока загрузится главная страница",
+    @DisplayName("Добваление двух тарифов в корзину")
+    void addTwoItemsToBasket() {
+        step("Войти на страницу неавторизованного соискателя",
+                RegistrationPageRT::unauthorizedApplicantPage);
+        step("Проверить загрузку логотипа",
                 RegistrationPageRT::waitingForDownload);
-        step("Нажимаем на пункт меню [Вакансии компании]",
-                RegistrationPageRT::menuCompanyVacancies);
-        step("Нажимаем на пункт меню [Добавить вакансию]", () ->
-                $("[aria-labelledby='megaMenuDropdown1']")
-                        .find("[href='/auth/manager/vacancies/new']").click());
-        step("Проверяем открытие страницы [Создание вакансии]", () ->
-                $(".content__title").shouldHave(text("Создание вакансии")));
+        step("Нажать на пункт меню [Тарифы]", () ->
+                $("[href='/tariffs']").click());
+        step("Нажать на тариф [Black]", () ->
+                $(byTagAndText("h3", "Black")).click());
+        step("Нажать на кнопку [Купить SIM]", () ->
+                $(".btn-black").click());
+        step("Проверить открытие модального окна Тариф [Black]", () ->
+                $(".popup-inner-wrapper").shouldHave(text("Тариф «Black»")));
+        step("Нажать на кнопку [Продолжить]", () ->
+                $(byTagAndText("a", "Продолжить")).click());
+        step("Перейти на страницу[Тарифы для смартфонов]", () -> {
+            $("[href='/home']").click();
+            $("[href='/tariffs']").click();
+        });
+        step("Нажать на тариф [Мой онлайн]", () ->
+                $(byTagAndText("h3", "Мой онлайн")).click());
+        step("Нажать на кнопку [Купить SIM]", () ->
+                $(".sim-buy-col").click());
+        step("Проверить открытие модального окна Тариф [Мой онлайн]", () ->
+                $(".popup-inner-wrapper").shouldHave(text("Тариф «Мой онлайн»")));
+        step("Нажать на кнопку [Продолжить]", () ->
+                $(byTagAndText("a", "Продолжить")).click());
+        step("Проверить в корзине добавление двух тарифов", () ->
+                $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
-
     @Test
-    @DisplayName("Проверка страницы [Тесты для вакансии]")
-    void rtportalVacancyTests() {
-        step("Авторизация работодателя",
-                RegistrationPageRT::openPageRegRT);
-        step("Ожидаем, пока загрузится главная страница",
+    @DisplayName("Удаление тарифа из корзины")
+    void removingTariffFromTheBasket() {
+        step("Войти на страницу неавторизованного соискателя",
+                RegistrationPageRT::unauthorizedApplicantPage);
+        step("Проверить загрузку логотипа",
                 RegistrationPageRT::waitingForDownload);
-        step("Нажимаем на пункт меню [Вакансии компании]",
-                RegistrationPageRT::menuCompanyVacancies);
-        step("Нажимаем на пункт меню [Тесты для вакансии]", () ->
-                $("[aria-labelledby='megaMenuDropdown1']")
-                        .find("[href='/auth/manager/tests']").click());
-        step("Проверяем открытие страницы [Тесты]", () ->
-                $(".content__title").shouldHave(text("Тесты")));
-    }
+        step("Нажать на пункт меню [Тарифы]", () ->
+                $("[href='/tariffs']").click());
+        step("Нажать на тариф [Black]", () ->
+                $(byTagAndText("h3", "Black")).click());
+        step("Нажать на кнопку [Купить SIM]", () ->
+                $(".btn-black").click());
+        step("Проверить открытие модального окна Тариф [Black]", () ->
+                $(".popup-inner-wrapper").shouldHave(text("Тариф «Black»")));
+        step("Нажать на кнопку [Продолжить]", () ->
+                $(byTagAndText("a", "Продолжить")).click());
+        step("Нажать на кнопку удаления", () ->
+                $(".icon-t2-trash-24").click());
+        step("Проверить отсутствие тарифов в корзине", () ->
+                $(".shop-cart2__cart-body").shouldHave(text("Ваша корзина пока пуста")));
+}
 
-    @Test
-    @DisplayName("Проверка страницы [Частные агентства занятости]")
-    void rtportalPrivateAgency() {
-        step("Авторизация работодателя",
-                RegistrationPageRT::openPageRegRT);
-        step("Ожидаем, пока загрузится главная страница",
-                RegistrationPageRT::waitingForDownload);
-        step("Нажимаем на пункт меню [Все сервисы]", () ->
-                $(".mega-menu__toggle").click());
-        step("Нажимаем на пункт меню [Частные агентства занятости]", () ->
-                $("[href='/private-employment-agency']").click());
-        step("Проверяем открытие страницы [Частные агентства занятости]", () ->
-                $(".content__title").shouldHave(text("Частные агентства занятости")));
-    }
+
 }
 
 
