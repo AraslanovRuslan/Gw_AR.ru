@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -26,7 +27,7 @@ public class Tele2Test extends TestBase{
 
     @Test
     @DisplayName("Проверка смены региона")
-    void vacanciesEmployer() {
+    void region() {
         step("Заходим на страницу неавторизованного соискателя",
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Нажимаем на регион", () ->
@@ -39,49 +40,36 @@ public class Tele2Test extends TestBase{
                 $("#regionSearchOpener").shouldHave(text("Свердловская область")));
 
     }
-
     @Test
-    @DisplayName("Проверка авторизации работодателя")
-    void rtportalAvtEmployerTests() {
-        step("Заходим на главную страницу неавторизованного соискателя",
+    @DisplayName("Проверка авторизации")
+    void authorization() {
+        step("Заходим на страницу неавторизованного соискателя",
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Нажимаем на кнопку [Войти]", () ->
-                $(".mega-menu__user-button").click());
-        step("Проверяем открытие страницы [Авторизации]", () ->
-                $(".content__title").shouldHave(text("Вход")));
-        step("Переходим на таб [Для работодателей]", () ->
-                $("[data-target='#employer']").click());
+                $(".gtm-new-navigation-login").click());
+        step("Нажимаем на кнопку [По паролю]", () ->
+                $(byTagAndText("button", "По паролю")).click());
         step("Вводим логин и пароль", () -> {
-            $("[name='login']").setValue(UserCreds.USER_LOGIN);
+            $("[name='username']").setValue(UserCreds.USER_LOGIN);
             $("[name='password']").setValue(UserCreds.USER_PASSWORD);
         });
         step("Нажимаем на кнопку [Войти]", () ->
-                $("[data-action='submit']").click());
-        step("Ожидаем, пока загрузится главная страница",
-                RegistrationPageRT::waitingForDownload);
-        step("Раскрываем информацию о компании", () ->
-                $("#megaMenuDropdownUser").click());
-        step("Проверяем ФИО менеджера", () ->
-                $(".mega-menu__user-name").shouldHave(text("Воронцов Сергей ")));
-        step("Проверяем название компании", () ->
-                $(".mega-menu__user-text").shouldHave(text("ИП Воронцов С.С. ")));
-    }
-
+                $(".btn-black").click());
+        step("Проверяем ФИО абонента", () ->
+                $(".inner-dashboard-numbers__main-info").shouldHave(text("Арасланов Руслан Гусманович")));
+        }
     @Test
-    @DisplayName("Проверка открытия страницы [Вакансии компании]")
-    void listVacanci(){
-
-        step("Авторизация работодателя",
+    @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
+    void tariff(){
+        step("Авторизация абонента",
                 RegistrationPageRT::openPageRegRT);
-        step("Ожидаем, пока загрузится главная страница",
+        step("Проверка загрузки логотипа",
                 RegistrationPageRT::waitingForDownload);
-        step("Нажимаем на пункт меню [Вакансии компании]",
-                RegistrationPageRT::menuCompanyVacancies);
-        step("Нажимаем на пункт меню [Управление вакансиями]", () ->
-                $("[aria-labelledby='megaMenuDropdown1']")
-                        .find("[href='/auth/manager/vacancies']").click());
-        step("Проверяем открытие страницы [Вакансии компании]", () ->
-                $(".content__title").shouldHave(text("Вакансии компании")));
+        step("Нажимаем на пункт меню [Тариф и остатки]", () ->
+                  $("[href='/lk/remains']").click());
+        step("Проверяем отображение тарифа [Мой онлайн+ 12_2021]", () ->
+                $(".subscriber-detailed-remnants__tariff-name")
+                        .shouldHave(text("Мой онлайн+ 12_2021")));
     }
 
     @Test
