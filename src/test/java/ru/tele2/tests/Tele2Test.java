@@ -4,6 +4,8 @@ import com.trudvsem.config.UserCreds;
 import com.trudvsem.pages.RegistrationPageRT;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
@@ -80,28 +82,14 @@ public class Tele2Test extends TestBase{
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
                 RegistrationPageRT::waitingForDownload);
-        step("Нажать на пункт меню [Тарифы]", () ->
-                $("[href='/tariffs']").click());
-        step("Нажать на тариф [Black]", () ->
-                $(byTagAndText("h3", "Black")).click());
-        step("Нажать на кнопку [Купить SIM]", () ->
-                $(".btn-black").click());
-        step("Проверить открытие модального окна Тариф [Black]", () ->
-                $(".popup-inner-wrapper").shouldHave(text("Тариф «Black»")));
-        step("Нажать на кнопку [Продолжить]", () ->
-                $(byTagAndText("a", "Продолжить")).click());
+        step("Добавление в корзину [Тарифа Black]",
+                RegistrationPageRT::addingBlackTariffToTheBasket);
         step("Перейти на страницу[Тарифы для смартфонов]", () -> {
             $("[href='/home']").click();
             $("[href='/tariffs']").click();
         });
-        step("Нажать на тариф [Мой онлайн]", () ->
-                $(byTagAndText("h3", "Мой онлайн")).click());
-        step("Нажать на кнопку [Купить SIM]", () ->
-                $(".sim-buy-col").click());
-        step("Проверить открытие модального окна Тариф [Мой онлайн]", () ->
-                $(".popup-inner-wrapper").shouldHave(text("Тариф «Мой онлайн»")));
-        step("Нажать на кнопку [Продолжить]", () ->
-                $(byTagAndText("a", "Продолжить")).click());
+        step("Добавление в корзину [Тарифа Мой онлайн]",
+                RegistrationPageRT::AddingTheTariffMyOnlineToTheBasket);
         step("Проверить в корзине добавление двух тарифов", () ->
                 $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
@@ -112,21 +100,35 @@ public class Tele2Test extends TestBase{
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
                 RegistrationPageRT::waitingForDownload);
-        step("Нажать на пункт меню [Тарифы]", () ->
-                $("[href='/tariffs']").click());
-        step("Нажать на тариф [Black]", () ->
-                $(byTagAndText("h3", "Black")).click());
-        step("Нажать на кнопку [Купить SIM]", () ->
-                $(".btn-black").click());
-        step("Проверить открытие модального окна Тариф [Black]", () ->
-                $(".popup-inner-wrapper").shouldHave(text("Тариф «Black»")));
-        step("Нажать на кнопку [Продолжить]", () ->
-                $(byTagAndText("a", "Продолжить")).click());
+        step("Добавление в корзину [Тарифа Black]",
+                RegistrationPageRT::addingBlackTariffToTheBasket);
         step("Нажать на кнопку удаления", () ->
                 $(".icon-t2-trash-24").click());
         step("Проверить отсутствие тарифов в корзине", () ->
                 $(".shop-cart2__cart-body").shouldHave(text("Ваша корзина пока пуста")));
 }
+    @ParameterizedTest
+    @DisplayName("Проверка наличия тарифа {1} в поисковой выдаче по запросу {0}")
+    @CsvSource({
+            "Black, Black",
+            "Супер онлайн+, Супер онлайн+",
+            "Игровой, Игровой",
+            "Premium, Premium",
+            "Мой разговор, Мой разговор"
+    })
+    void searchVacanciTest(String searchTariff, String expectedTariff){
+        step("Войти на страницу неавторизованного соискателя",
+                RegistrationPageRT::unauthorizedApplicantPage);
+        step("Проверить загрузку логотипа",
+                RegistrationPageRT::waitingForDownload);
+        step("Нажать на кнопку поиска", () ->
+                $(".icon-search-desctop").click());
+        step("В поисковой строке ввести название тарифа", () ->
+                $("#search-text").setValue(searchTariff).pressEnter());
+        step("Проверить отображение тарифа в поисковой странице", () ->
+                $(".result-item_tariff").shouldHave(text(expectedTariff)));
+    }
+
 
 
 }

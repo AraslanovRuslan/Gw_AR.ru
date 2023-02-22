@@ -32,12 +32,37 @@ public class RegistrationPageRT {
     public static void waitingForDownload(){
         $("#darkLogoFill").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
-    public static void menuCompanyVacancies(){
-        $("#megaMenuDropdown1").click();
-    }
+
 
     public static void unauthorizedApplicantPage(){
             open("/");
     }
+
+
+    public static void addingBlackTariffToTheBasket(){
+        step("Нажать на пункт меню [Тарифы]", () ->
+                $("[href='/tariffs']").click());
+        step("Нажать на тариф [Black]", () ->
+                $(byTagAndText("h3", "Black")).click());
+        step("Нажать на кнопку [Купить SIM]", () ->
+                $(".btn-black").click());
+        step("Проверить открытие модального окна Тариф [Black]", () ->
+                $(".popup-inner-wrapper").shouldHave(text("Тариф «Black»")));
+        step("Нажать на кнопку [Продолжить]", () ->
+                $(byTagAndText("a", "Продолжить")).click());
+    }
+    public static void AddingTheTariffMyOnlineToTheBasket() {
+        step("Нажать на тариф [Мой онлайн]", () ->
+                $(byTagAndText("h3", "Мой онлайн")).click());
+        step("Нажать на кнопку [Купить SIM]", () ->
+                $(".sim-buy-col").click());
+        step("Проверить открытие модального окна Тариф [Мой онлайн]", () ->
+                $(".popup-inner-wrapper").shouldHave(text("Тариф «Мой онлайн»")));
+        step("Нажать на кнопку [Продолжить]", () ->
+                $(byTagAndText("a", "Продолжить")).click());
+        step("Проверить в корзине добавление двух тарифов", () ->
+                $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
+    }
+
 
 }
