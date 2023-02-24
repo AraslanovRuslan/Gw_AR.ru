@@ -1,4 +1,4 @@
-package com.trudvsem.helpers;
+package ru.tele2.helpers;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;

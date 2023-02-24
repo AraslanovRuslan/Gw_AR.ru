@@ -1,10 +1,10 @@
-package ru.tele2.tests;
+package ru.tele2.tests.web;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.trudvsem.helpers.Attach;
-import com.trudvsem.pages.RegistrationPageRT;
+import ru.tele2.helpers.Attach;
+import ru.tele2.pages.RegistrationPageRT;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,4 +1,4 @@
-package com.trudvsem.config;
+package ru.tele2.config;
 
 import org.aeonbits.owner.Config;
 

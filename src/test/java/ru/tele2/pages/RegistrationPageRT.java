@@ -1,7 +1,7 @@
-package com.trudvsem.pages;
+package ru.tele2.pages;
 
 import com.codeborne.selenide.Condition;
-import com.trudvsem.config.UserCreds;
+import ru.tele2.config.UserCreds;
 
 import java.io.File;
 import java.time.Duration;

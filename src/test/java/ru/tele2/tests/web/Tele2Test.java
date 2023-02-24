@@ -1,7 +1,6 @@
-package ru.tele2.tests;
-import com.codeborne.selenide.SelenideElement;
-import com.trudvsem.config.UserCreds;
-import com.trudvsem.pages.RegistrationPageRT;
+package ru.tele2.tests.web;
+import ru.tele2.config.UserCreds;
+import ru.tele2.pages.RegistrationPageRT;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +10,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
+import static org.hamcrest.Matchers.is;
 
 public class Tele2Test extends TestBase{
 
@@ -130,7 +132,23 @@ public class Tele2Test extends TestBase{
     }
 
 
+    @Test
+    void registerSuccessfulTest() {
+        String data = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\" }";
 
+        given()
+                .log().uri()
+                .contentType(JSON)
+                .body(data)
+                .when()
+                .post("https://reqres.in/api/register")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .body("id", is(4))
+                .body("token", is("QpwL5tke4Pnpja7X4"));
+    }
 }
 
 
