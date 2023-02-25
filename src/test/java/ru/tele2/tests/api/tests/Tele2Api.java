@@ -1,12 +1,16 @@
-package ru.tele2.tests.api;
+package ru.tele2.tests.api.tests;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.tele2.tests.api.models.BodyModel;
+
+import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 import static io.restassured.RestAssured.given;
 
-public class TeleApi {
+public class Tele2Api {
 
         @BeforeAll
         public static void setUp() {
@@ -23,7 +27,7 @@ public class TeleApi {
                     .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0;" +
                             " Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 " +
                             "Safari/537.36")
-                    .contentType("application/json")
+                    .contentType(JSON)
                     .body(body)
                     .when()
                     .put("/api/cart/items?siteId=siteCHELYABINSK")
