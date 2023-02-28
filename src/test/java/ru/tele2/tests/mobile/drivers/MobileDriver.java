@@ -39,20 +39,25 @@ public class MobileDriver implements WebDriverProvider {
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName("Android")
-//                .setDeviceName("Pixel 4 API 30")
-//                .setPlatformVersion("11.0")
-                .setDeviceName("RFCR90ZMNQP")
-                .setPlatformVersion("13.0")
+               .setDeviceName("Pixel 4 API 30")
+               .setPlatformVersion("11.0")
+//                .setDeviceName("RFCR90ZMNQP")
+//                .setPlatformVersion("13.0")
                 .setApp(getAppPath())
                 .setAppPackage("org.wikipedia.alpha")
                 .setAppActivity("org.wikipedia.main.MainActivity");
+//                .setAppPackage("ru.tele2.mytele2")
+//                .setAppActivity("com.tele2.ui.activities.main.MainActivity");
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
     private String getAppPath() {
-        String appUrl = "https://trashbox.ru/files20/1765798_e9231c/ru.tele2.mytele2_4.37.0_167650252.apk";
-        String appPath = "src/test/resources/apps/ru.tele2.mytele2_4.37.0_167650252.apk";
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
+                "releases/download/latest/app-alpha-universal-release.apk";
+        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
+//        String appUrl = "https://trashbox.ru/files20/1765798_e9231c/ru.tele2.mytele2_4.37.0_167650252.apk";
+//        String appPath = "src/test/resources/apps/ru.tele2.mytele2_4.37.0_167650252.apk";
 
         File app = new File(appPath);
         if (!app.exists()) {

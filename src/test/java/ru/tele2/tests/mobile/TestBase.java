@@ -2,7 +2,6 @@ package ru.tele2.tests.mobile;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import ru.tele2.tests.mobile.drivers.BrowserstackDriver;
 import ru.tele2.tests.mobile.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
