@@ -1,4 +1,4 @@
-package ru.tele2.drivers;
+package ru.tele2.tests.mobile.drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
@@ -44,15 +44,15 @@ public class MobileDriver implements WebDriverProvider {
                 .setDeviceName("RFCR90ZMNQP")
                 .setPlatformVersion("13.0")
                 .setApp(getAppPath())
-                .setAppPackage("com.tele2.android")
+                .setAppPackage("org.wikipedia.alpha")
                 .setAppActivity("org.wikipedia.main.MainActivity");
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
     private String getAppPath() {
-        String appUrl = "https://rustore.ru/download";
-        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
+        String appUrl = "https://trashbox.ru/files20/1765798_e9231c/ru.tele2.mytele2_4.37.0_167650252.apk";
+        String appPath = "src/test/resources/apps/ru.tele2.mytele2_4.37.0_167650252.apk";
 
         File app = new File(appPath);
         if (!app.exists()) {
