@@ -53,11 +53,8 @@ public class MobileDriver implements WebDriverProvider {
     }
 
     private String getAppPath() {
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
-                "releases/download/latest/app-alpha-universal-release.apk";
-        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
-//        String appUrl = "https://trashbox.ru/files20/1765798_e9231c/ru.tele2.mytele2_4.37.0_167650252.apk";
-//        String appPath = "src/test/resources/apps/ru.tele2.mytele2_4.37.0_167650252.apk";
+        String appUrl = "https://trashbox.ru/files20/1765798_e9231c/ru.tele2.mytele2_4.37.0_167650252.apk";
+        String appPath = "src/test/resources/apps/ru.tele2.mytele2_4.37.0_167650252.apk";
 
         File app = new File(appPath);
         if (!app.exists()) {

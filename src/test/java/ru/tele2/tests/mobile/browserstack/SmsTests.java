@@ -1,4 +1,4 @@
-package ru.tele2.tests.mobile;
+package ru.tele2.tests.mobile.browserstack;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,17 +6,16 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.id;
 
-public class SearchTests extends TestBase {
+public class SmsTests extends TestBaseBr {
 
     @Test
     @DisplayName("Проверка отправки смс с кодом")
     void sendCodeViaSms() {
         step("Ввод телефонного номера и отправка смс с кодом ", () -> {
-            $(id("ru.tele2.mytele2:id/phoneText")).sendKeys("9000828506");
+                $(id("ru.tele2.mytele2:id/phoneText")).sendKeys("9000828506");
         });
         step("Проверка отправки смс с кодом", () ->
                 $(id("ru.tele2.mytele2:id/codeSentToHint"))

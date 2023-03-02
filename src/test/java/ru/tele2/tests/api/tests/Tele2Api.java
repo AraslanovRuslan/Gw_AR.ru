@@ -34,8 +34,8 @@ public class Tele2Api {
                     .then()
                     .log().all()
                     .statusCode(200);
-   //                .body("amount", is(2))
-  //                  .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"));
+   //               .body("amount", is(2))
+  //                .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"));
         }
 
     }

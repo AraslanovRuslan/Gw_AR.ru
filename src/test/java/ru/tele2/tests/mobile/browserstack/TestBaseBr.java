@@ -1,21 +1,22 @@
-package ru.tele2.tests.mobile;
+package ru.tele2.tests.mobile.browserstack;
+
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import ru.tele2.tests.mobile.helpers.Attach;
+import ru.tele2.tests.mobile.drivers.BrowserstackDriver;
+import ru.tele2.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import ru.tele2.tests.mobile.drivers.MobileDriver;
 
 import static com.codeborne.selenide.Selenide.*;
 
-class TestBase {
+class TestBaseBr {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = MobileDriver.class.getName();
+        Configuration.browser = BrowserstackDriver.class.getName();
         Configuration.browserSize = null;
     }
 
@@ -27,9 +28,13 @@ class TestBase {
 
     @AfterEach
     void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
+        String sessionId = sessionId().toString();
+
+//        Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
 
         closeWebDriver();
+
+       // Attach.addVideo(sessionId);
     }
 }
