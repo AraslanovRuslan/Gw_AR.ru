@@ -36,8 +36,6 @@ public class PageTele2 {
     public static void unauthorizedApplicantPage(){
             open("/");
     }
-
-
     public static void addingBlackTariffToTheBasket(){
         step("Нажать на пункт меню [Тарифы]", () ->
                 $("[href='/tariffs']").click());
@@ -62,6 +60,4 @@ public class PageTele2 {
         step("Проверить в корзине добавление двух тарифов", () ->
                 $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
-
-
 }

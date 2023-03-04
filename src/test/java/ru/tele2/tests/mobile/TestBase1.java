@@ -11,7 +11,7 @@ import ru.tele2.tests.mobile.drivers.MobileDriver;
 
 import static com.codeborne.selenide.Selenide.*;
 
-class TestBase {
+class TestBase1 {
 
     @BeforeAll
     static void beforeAll() {
