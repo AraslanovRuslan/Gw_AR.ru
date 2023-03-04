@@ -3,6 +3,7 @@ package ru.tele2.tests.api.tests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.tele2.tests.api.models.BodyModel;
 
@@ -10,6 +11,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 import static io.restassured.RestAssured.given;
 
+@Tag("api")
 public class Tele2Api {
 
         @BeforeAll

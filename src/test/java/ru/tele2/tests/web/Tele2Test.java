@@ -1,4 +1,5 @@
 package ru.tele2.tests.web;
+import org.junit.jupiter.api.Tag;
 import ru.tele2.config.UserCreds;
 import ru.tele2.pages.RegistrationPageRT;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +15,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
+@Tag("web")
 public class Tele2Test extends TestBase{
 
 
@@ -33,7 +35,7 @@ public class Tele2Test extends TestBase{
     @Test
     @DisplayName("Проверка смены региона")
     void region() {
-        step("Заходим на страницу неавторизованного соискателя",
+        step("Заходим на страницу неавторизованного абонента",
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Нажимаем на регион", () ->
             $("#regionSearchOpener").click());

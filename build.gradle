@@ -55,18 +55,8 @@ tasks.withType(Test) {
     }
 }
 
-
-
-help {
-    doFirst {
-        println ""
-        println "************************************************************************ "
-        println "***                                                                  *** "
-        println "*** Welcome to https://github.com/qa-guru/demoqa-test-16!            *** "
-        println "***                                                                  *** "
-        println "*** ./gradlew help                                                   *** "
-        println "***                                                                  *** "
-        println "************************************************************************ "
-        println ""
+task web_api_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("web", "api")
     }
 }
