@@ -1,19 +1,15 @@
 package ru.tele2.tests.web;
 import org.junit.jupiter.api.Tag;
 import ru.tele2.config.UserCreds;
-import ru.tele2.pages.RegistrationPageRT;
+import ru.tele2.pages.PageTele2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.is;
 
 @Tag("web")
 public class Tele2Test extends TestBase{
@@ -23,7 +19,7 @@ public class Tele2Test extends TestBase{
         @DisplayName("Проверка поисковой строки")
         void searchStringsTests() {
             step("Заходим на страницу неавторизованного соискателя",
-                    RegistrationPageRT::unauthorizedApplicantPage);
+                    PageTele2::unauthorizedApplicantPage);
             step("Нажимаем на кнопку [Поиск]" , () ->
                     $(".header-navbar-search").click());
             step("В строку поиска вводим [Обмен минут на кино] и нажимаем на Enter", () ->
@@ -36,7 +32,7 @@ public class Tele2Test extends TestBase{
     @DisplayName("Проверка смены региона")
     void region() {
         step("Заходим на страницу неавторизованного абонента",
-                RegistrationPageRT::unauthorizedApplicantPage);
+                PageTele2::unauthorizedApplicantPage);
         step("Нажимаем на регион", () ->
             $("#regionSearchOpener").click());
         step("В строке поиск региона вводим [Свердловская область]", () ->
@@ -51,7 +47,7 @@ public class Tele2Test extends TestBase{
     @DisplayName("Проверка авторизации")
     void authorization() {
         step("Заходим на страницу неавторизованного абонента",
-                RegistrationPageRT::unauthorizedApplicantPage);
+                PageTele2::unauthorizedApplicantPage);
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".gtm-new-navigation-login").click());
         step("Нажимаем на кнопку [По паролю]", () ->
@@ -63,15 +59,15 @@ public class Tele2Test extends TestBase{
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".btn-black").click());
         step("Проверяем ФИО абонента", () ->
-                $(".inner-dashboard-numbers__main-info").shouldHave(text("Арасланов Руслан Гусманович")));
+                $(".inner-dashboard-numbers__main-info-content").shouldHave(text("Арасланов Руслан Гусманович")));
         }
     @Test
     @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
     void tariff(){
         step("Авторизация абонента",
-                RegistrationPageRT::openPageRegRT);
+                PageTele2::openPageRegRT);
         step("Проверка загрузки логотипа",
-                RegistrationPageRT::waitingForDownload);
+                PageTele2::waitingForDownload);
         step("Нажимаем на пункт меню [Тариф и остатки]", () ->
                   $("[href='/lk/remains']").click());
         step("Проверяем отображение тарифа [Мой онлайн+ 12_2021]", () ->
@@ -83,17 +79,17 @@ public class Tele2Test extends TestBase{
     @DisplayName("Добваление двух тарифов в корзину")
     void addTwoItemsToBasket() {
         step("Войти на страницу неавторизованного соискателя",
-                RegistrationPageRT::unauthorizedApplicantPage);
+                PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
-                RegistrationPageRT::waitingForDownload);
+                PageTele2::waitingForDownload);
         step("Добавление в корзину [Тарифа Black]",
-                RegistrationPageRT::addingBlackTariffToTheBasket);
+                PageTele2::addingBlackTariffToTheBasket);
         step("Перейти на страницу[Тарифы для смартфонов]", () -> {
             $("[href='/home']").click();
             $("[href='/tariffs']").click();
         });
         step("Добавление в корзину [Тарифа Мой онлайн]",
-                RegistrationPageRT::AddingTheTariffMyOnlineToTheBasket);
+                PageTele2::AddingTheTariffMyOnlineToTheBasket);
         step("Проверить в корзине добавление двух тарифов", () ->
                 $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
@@ -101,11 +97,11 @@ public class Tele2Test extends TestBase{
     @DisplayName("Удаление тарифа из корзины")
     void removingTariffFromTheBasket() {
         step("Войти на страницу неавторизованного соискателя",
-                RegistrationPageRT::unauthorizedApplicantPage);
+                PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
-                RegistrationPageRT::waitingForDownload);
+                PageTele2::waitingForDownload);
         step("Добавление в корзину [Тарифа Black]",
-                RegistrationPageRT::addingBlackTariffToTheBasket);
+                PageTele2::addingBlackTariffToTheBasket);
         step("Нажать на кнопку удаления", () ->
                 $(".icon-t2-trash-24").click());
         step("Проверить отсутствие тарифов в корзине", () ->
@@ -122,34 +118,15 @@ public class Tele2Test extends TestBase{
     })
     void searchVacanciTest(String searchTariff, String expectedTariff){
         step("Войти на страницу неавторизованного соискателя",
-                RegistrationPageRT::unauthorizedApplicantPage);
+                PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
-                RegistrationPageRT::waitingForDownload);
+                PageTele2::waitingForDownload);
         step("Нажать на кнопку поиска", () ->
                 $(".icon-search-desctop").click());
         step("В поисковой строке ввести название тарифа", () ->
                 $("#search-text").setValue(searchTariff).pressEnter());
         step("Проверить отображение тарифа в поисковой странице", () ->
                 $(".result-item_tariff").shouldHave(text(expectedTariff)));
-    }
-
-
-    @Test
-    void registerSuccessfulTest() {
-        String data = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\" }";
-
-        given()
-                .log().uri()
-                .contentType(JSON)
-                .body(data)
-                .when()
-                .post("https://reqres.in/api/register")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body("id", is(4))
-                .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 }
 

@@ -3,7 +3,6 @@ package ru.tele2.pages;
 import com.codeborne.selenide.Condition;
 import ru.tele2.config.UserCreds;
 
-import java.io.File;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
@@ -12,10 +11,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
-public class RegistrationPageRT {
+public class PageTele2 {
     public static void openPageRegRT(){
-        step("Заходим на страницу неавторизованного соискателя",
-                RegistrationPageRT::unauthorizedApplicantPage);
+        step("Заходим на страницу неавторизованного соискателя",() ->
+                open("https://tele2.ru"));
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".gtm-new-navigation-login").click());
         step("Нажимаем на кнопку [По паролю]", () ->
