@@ -50,7 +50,7 @@ public class Tele2Test extends TestBase{
     @Test
     @DisplayName("Проверка авторизации")
     void authorization() {
-        step("Заходим на страницу неавторизованного соискателя",
+        step("Заходим на страницу неавторизованного абонента",
                 RegistrationPageRT::unauthorizedApplicantPage);
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".gtm-new-navigation-login").click());
