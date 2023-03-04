@@ -6,9 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -19,7 +19,7 @@ public class Tele2Test extends TestBase{
         @Test
         @DisplayName("Проверка поисковой строки")
         void searchStringsTests() {
-            step("Заходим на страницу неавторизованного соискателя",
+            step("Заходим на страницу неавторизованного абонента",
                     PageTele2::unauthorizedApplicantPage);
             step("Нажимаем на кнопку [Поиск]" , () ->
                     $(".header-navbar-search").click());
@@ -60,7 +60,7 @@ public class Tele2Test extends TestBase{
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".btn-black").click());
         step("Проверяем ФИО абонента", () ->
-                $(byText("Руслан")).shouldHave(text("Руслан")));
+                $(".dashboard-container__row").shouldHave(text("Арасланов Руслан Гусманович")));
         }
     @Test
     @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
@@ -79,7 +79,7 @@ public class Tele2Test extends TestBase{
     @Test
     @DisplayName("Добваление двух тарифов в корзину")
     void addTwoItemsToBasket() {
-        step("Войти на страницу неавторизованного соискателя",
+        step("Войти на страницу неавторизованного абонента",
                 PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
                 PageTele2::waitingForDownload);
@@ -97,7 +97,7 @@ public class Tele2Test extends TestBase{
     @Test
     @DisplayName("Удаление тарифа из корзины")
     void removingTariffFromTheBasket() {
-        step("Войти на страницу неавторизованного соискателя",
+        step("Войти на страницу неавторизованного абонента",
                 PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
                 PageTele2::waitingForDownload);
@@ -118,7 +118,7 @@ public class Tele2Test extends TestBase{
             "Мой разговор, Мой разговор"
     })
     void searchVacanciTest(String searchTariff, String expectedTariff){
-        step("Войти на страницу неавторизованного соискателя",
+        step("Войти на страницу неавторизованного абонента",
                 PageTele2::unauthorizedApplicantPage);
         step("Проверить загрузку логотипа",
                 PageTele2::waitingForDownload);

@@ -13,7 +13,7 @@ import static io.qameta.allure.Allure.step;
 
 public class PageTele2 {
     public static void openPageRegRT(){
-        step("Заходим на страницу неавторизованного соискателя",
+        step("Заходим на страницу неавторизованного абонента",
                 PageTele2::unauthorizedApplicantPage);
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".gtm-new-navigation-login").click());
