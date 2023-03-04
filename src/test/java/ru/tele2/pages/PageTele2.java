@@ -13,8 +13,8 @@ import static io.qameta.allure.Allure.step;
 
 public class PageTele2 {
     public static void openPageRegRT(){
-        step("Заходим на страницу неавторизованного соискателя",() ->
-                open("https://tele2.ru"));
+        step("Заходим на страницу неавторизованного соискателя",
+                PageTele2::unauthorizedApplicantPage);
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".gtm-new-navigation-login").click());
         step("Нажимаем на кнопку [По паролю]", () ->
@@ -36,6 +36,8 @@ public class PageTele2 {
     public static void unauthorizedApplicantPage(){
             open("/");
     }
+
+
     public static void addingBlackTariffToTheBasket(){
         step("Нажать на пункт меню [Тарифы]", () ->
                 $("[href='/tariffs']").click());
@@ -60,4 +62,6 @@ public class PageTele2 {
         step("Проверить в корзине добавление двух тарифов", () ->
                 $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
+
+
 }

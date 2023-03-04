@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -59,7 +60,7 @@ public class Tele2Test extends TestBase{
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".btn-black").click());
         step("Проверяем ФИО абонента", () ->
-                $(".inner-dashboard-numbers__current-number").shouldHave(text("UserCreds.USER_LOGIN")));
+                $(byText("Руслан")).shouldHave(text("Руслан")));
         }
     @Test
     @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
