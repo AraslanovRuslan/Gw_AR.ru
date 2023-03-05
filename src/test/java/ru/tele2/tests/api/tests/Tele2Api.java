@@ -3,6 +3,7 @@ package ru.tele2.tests.api.tests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.tele2.tests.api.models.BodyModel;
@@ -20,6 +21,7 @@ public class Tele2Api {
         }
 
         @Test
+        @DisplayName("Проверка добавления товара в корзину (API)")
         void addingProductBasket() {
             String body = "[{\"item\":{\"type\":\"internetStoreService\",\"catalogId\"" +
                     ":{\"productId\":\"prod5630018\",\"skuId\":" +
