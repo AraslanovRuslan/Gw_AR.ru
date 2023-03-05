@@ -1,7 +1,7 @@
 # Проект по тестированию сайта "TELE2"
 > <a target="_blank" href="https://tele2.ru/">Ссылка на сайт TELE2</a>
 
-![This is an image](/design/images/tele2.jpeg)
+![This is an image](/design/images/tele2.png)
 
 #### Список проверок, реализованных в автотестах
 - [x] Проверка поисковой строки
