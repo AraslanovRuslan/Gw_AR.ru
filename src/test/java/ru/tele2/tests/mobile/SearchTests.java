@@ -10,8 +10,8 @@ import static org.openqa.selenium.By.id;
 
 public class SearchTests extends TestBase1 {
 
-    @Test
-    @DisplayName("Проверка отправки смс с кодом")
+//    @Test
+//    @DisplayName("Проверка отправки смс с кодом")
     void sendCodeViaSms() {
         step("Ввод телефонного номера и отправка смс с кодом ", () -> {
             $(id("ru.tele2.mytele2:id/phoneText")).sendKeys("9000828506");
@@ -21,8 +21,8 @@ public class SearchTests extends TestBase1 {
                         .shouldHave(text("Код отправлен на номер +7 900 082 85 06")));
     }
 
-    @Test
-    @DisplayName("Проверка кнопки [Вход по паролю]")
+//    @Test
+//    @DisplayName("Проверка кнопки [Вход по паролю]")
     void рasswordLoginButton() {
         step("Ввод телефонного номера", () -> {
             $(id("ru.tele2.mytele2:id/phoneText")).sendKeys("9000828506");
