@@ -95,16 +95,12 @@ D --> H[android_emulator]
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
-## <a name="Запуск в Jenkins">Запуск в [Jenkins](https://jenkins.autotests.cloud/job/dostavka.magnit.ru/)</a>
+## <a name="Запуск в Jenkins">Запуск в [Jenkins](https://jenkins.autotests.cloud/job/TELE2/)</a>
 Главная страница сборки:
 <p  align="center">
 <img src="images/screens/JenkinsMain.png" width="950">
 </p>
 
-Параметризованное задание Jenkins может быть запущено с необходимыми ***tag*** и ***runIn***:
-<p  align="center">
-<img src="images/screens/Jenkins.png" alt="JenkinsBuildParameters" width="950">
-</p>
 
 Конфиденциальная информация (имена для входа и пароли) хранится в зашифрованном виде в хранилище учетных данных Jenkins.\
 И относительно безопасно передается в сборку аргументами gradle, а его значения маскируются в логах.
@@ -123,7 +119,7 @@ Telegram-бот отправляет краткий отчет в указанн
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
-# <a name="AllureReport">Результаты тестов в [Allure Report](https://jenkins.autotests.cloud/job/dostavka.magnit.ru/19/allure/)</a>
+# <a name="AllureReport">Результаты тестов в [Allure Report](https://jenkins.autotests.cloud/job/TELE2/19/allure/)</a>
 
 ## Главная страница
 Главная страница отчета Allure содержит следующие блоки:
@@ -156,7 +152,7 @@ Telegram-бот отправляет краткий отчет в указанн
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
-# <a>Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/1668/test-cases?treeId=3201)</a>
+# <a>Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/1967/test-cases?treeId=3785)</a>
 > Ссылка доступна только авторизованным пользователям.
 
 Тест-кейсы в проекте импортируются и постоянно обновляются из кода,
