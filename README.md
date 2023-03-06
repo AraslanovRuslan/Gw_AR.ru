@@ -148,7 +148,7 @@ Telegram-бот отправляет краткий отчет в указанн
 
 <p align="left">
   <img src="images/screens/AllureTestSuites2.png" alt="AllureReportSuites2" width="950">
-</p>
+</p>  
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
