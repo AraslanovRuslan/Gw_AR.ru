@@ -22,10 +22,8 @@
 - [x] `Page Object` проектирование
 - [x] Параметризованные тесты
 - [x] Различные файлы конфигурации для запуска теста в зависимости от параметров сборки
-- [x] Конфигурация с библиотекой `Owner`
 - [x] Использование `Lombok` для моделей в API тестах
 - [x] Использование request/response спецификаций для API тестов
-- [x] Custom Allure listener для API requests/responses логов
 - [x] Интеграция с `Allure TestOps`
 - [x] Автотесты как тестовая документация
 - [x] Интеграция с `Jira`
@@ -70,7 +68,7 @@
 ## <a name="GradleCommand">Команды для Gradle</a>
 Для запуска локально и в Jenkins используется следующая команда::
 ```bash
-gradle clean test -Dtag=<tag> -DrunIn=<runIn>
+gradle clean test -Dtag=<tag> 
 ```
 Дополнительные параметры:
 > `-Dselenoid_user_sys_prop=enter_user` `-Dselenoid_key_sys_prop=enter_key` - данные для selenoid\
@@ -82,18 +80,6 @@ gradle clean test -Dtag=<tag> -DrunIn=<runIn>
 >- *Web*
 >- *Android*
  
-`runIn` - определяет среду для запуска этих тестов:
->- *api* - for api tests
->- *browser_selenoid*
->- *browser_local*
->- *android_browserstack*
->- *android_emulator*
-
-Дополнительные свойства извлекаются из соответствующего файла конфигурации (в зависимости от значения `runIn`):
-```bash
-./resources/config/${runIn}.properties
-```
-
 Допустимые комбинации:
 ```mermaid
 graph LR
