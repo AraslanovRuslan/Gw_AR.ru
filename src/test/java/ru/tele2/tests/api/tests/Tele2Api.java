@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import ru.tele2.tests.api.models.BodyModel;
 
 import static io.restassured.http.ContentType.JSON;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static io.restassured.RestAssured.given;
 
@@ -37,9 +38,20 @@ public class Tele2Api {
                     .put("/api/cart/items?siteId=siteCHELYABINSK")
                     .then()
                     .log().all()
-                    .statusCode(200);
-   //               .body("amount", is(2))
-  //                .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"));
+                    .statusCode(200)
+                    .body("meta.status", equalTo("OK"));
         }
-
+        @Test
+        @DisplayName("Проверка ответа со статусом 403 (API)")
+        void testUnauthorizedAccess() {
+             given()
+                .contentType(JSON)
+                .when()
+                .put("/api")
+                .then()
+                .log().all()
+                .statusCode(403);
     }
+}
+
+
