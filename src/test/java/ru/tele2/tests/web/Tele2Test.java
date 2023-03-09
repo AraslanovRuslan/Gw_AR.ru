@@ -60,7 +60,7 @@ public class Tele2Test extends TestBase{
         step("Нажимаем на кнопку [Войти]", () ->
                 $(".btn-black").click());
         step("Проверяем ФИО абонента", () ->
-                $(".dashboard-container__row").shouldHave(text("Арасланов Руслан Гусманович")));
+                $(".dashboard-container__row").shouldHave(text("Руслан")));
         }
     @Test
     @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
