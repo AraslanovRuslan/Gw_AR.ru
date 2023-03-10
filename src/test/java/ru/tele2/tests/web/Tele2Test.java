@@ -57,7 +57,7 @@ public class Tele2Test extends TestBase{
         step("Нажимаем на кнопку [По паролю]", () ->
                 $(byTagAndText("button", "По паролю")).click());
         step("Вводим логин и пароль", () -> {
-            $("[name='username']").setValue(LOGIN);
+            $x("//input[@id='keycloakAuth.phone']").setValue(LOGIN);
             $("[name='password']").setValue(PASSWORD);
         });
 
