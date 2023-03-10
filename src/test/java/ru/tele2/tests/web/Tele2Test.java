@@ -12,10 +12,13 @@ import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
+
+
 @Tag("web")
 public class Tele2Test extends TestBase{
 
-
+    private final String LOGIN = System.getProperty("login", "admin");
+    private final String PASSWORD = System.getProperty("password", "admin");
         @Test
         @DisplayName("Проверка поисковой строки")
         void searchStringsTests() {
@@ -44,37 +47,39 @@ public class Tele2Test extends TestBase{
                 $("#regionSearchOpener").shouldHave(text("Свердловская область")));
 
     }
-//    @Test
-//    @DisplayName("Проверка авторизации")
-//    void authorization() {
-//        step("Заходим на страницу неавторизованного абонента",
-//                PageTele2::unauthorizedApplicantPage);
-//        step("Нажимаем на кнопку [Войти]", () ->
-//                $(".gtm-new-navigation-login").click());
-//        step("Нажимаем на кнопку [По паролю]", () ->
-//                $(byTagAndText("button", "По паролю")).click());
-//        step("Вводим логин и пароль", () -> {
-//            $("[name='username']").setValue(UserCreds.USER_LOGIN);
-//            $("[name='password']").setValue(UserCreds.USER_PASSWORD);
-//        });
-//        step("Нажимаем на кнопку [Войти]", () ->
-//                $(".btn-black").click());
-//        step("Проверяем ФИО абонента", () ->
-//                $(".dashboard-container__row").shouldHave(text("Руслан")));
-//        }
-//    @Test
-//    @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
-//    void tariff(){
-//        step("Авторизация абонента",
-//                PageTele2::openPageRegRT);
-//        step("Проверка загрузки логотипа",
-//                PageTele2::waitingForDownload);
-//        step("Нажимаем на пункт меню [Тариф и остатки]", () ->
-//                  $("[href='/lk/remains']").click());
-//        step("Проверяем отображение тарифа [Мой онлайн+ 12_2021]", () ->
-//                $(".subscriber-detailed-remnants__tariff-name")
-//                        .shouldHave(text("Мой онлайн+ 12_2021")));
-//    }
+    @Test
+    @DisplayName("Проверка авторизации")
+    void authorization() {
+        step("Заходим на страницу неавторизованного абонента",
+                PageTele2::unauthorizedApplicantPage);
+        step("Нажимаем на кнопку [Войти]", () ->
+                $(".gtm-new-navigation-login").click());
+        step("Нажимаем на кнопку [По паролю]", () ->
+                $(byTagAndText("button", "По паролю")).click());
+        step("Вводим логин и пароль", () -> {
+            $("[name='username']").setValue(LOGIN);
+            $("[name='password']").setValue(PASSWORD);
+        });
+
+
+        step("Нажимаем на кнопку [Войти]", () ->
+                $(".btn-black").click());
+        step("Проверяем ФИО абонента", () ->
+                $(".dashboard-container__row").shouldHave(text("Руслан")));
+        }
+    @Test
+    @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
+    void tariff(){
+        step("Авторизация абонента",
+                PageTele2::openPageRegRT);
+        step("Проверка загрузки логотипа",
+                PageTele2::waitingForDownload);
+        step("Нажимаем на пункт меню [Тариф и остатки]", () ->
+                  $("[href='/lk/remains']").click());
+        step("Проверяем отображение тарифа [Мой онлайн+ 12_2021]", () ->
+                $(".subscriber-detailed-remnants__tariff-name")
+                        .shouldHave(text("Мой онлайн+ 12_2021")));
+    }
 
     @Test
     @DisplayName("Добваление двух тарифов в корзину")
