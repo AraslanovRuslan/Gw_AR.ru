@@ -17,8 +17,7 @@ import static io.qameta.allure.Allure.step;
 @Tag("web")
 public class Tele2Test extends TestBase{
 
-    private final String LOGIN = System.getProperty("login", "admin");
-    private final String PASSWORD = System.getProperty("password", "admin");
+
         @Test
         @DisplayName("Проверка поисковой строки")
         void searchStringsTests() {
@@ -47,6 +46,8 @@ public class Tele2Test extends TestBase{
                 $("#regionSearchOpener").shouldHave(text("Свердловская область")));
 
     }
+    private final String LOGIN = System.getProperty("login");
+    private final String PASSWORD = System.getProperty("password");
     @Test
     @DisplayName("Проверка авторизации")
     void authorization() {
