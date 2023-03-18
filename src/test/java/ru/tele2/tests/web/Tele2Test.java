@@ -17,7 +17,6 @@ import static io.qameta.allure.Allure.step;
 @Tag("web")
 public class Tele2Test extends TestBase{
 
-
      @Test
      @DisplayName("Проверка поисковой строки")
      void searchStringsTests() {
