@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.*;
 
-class TestBaseBr {
+class BaseMobileTest {
 
     @BeforeAll
     static void beforeAll() {
