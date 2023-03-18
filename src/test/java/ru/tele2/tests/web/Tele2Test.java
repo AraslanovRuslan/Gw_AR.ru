@@ -90,7 +90,7 @@ public class Tele2Test extends TestBase{
             $("[href='/tariffs']").click();
         });
         step("Добавление в корзину [Тарифа Мой онлайн]",
-            PageTele2::AddingTheTariffMyOnlineToTheBasket);
+            PageTele2::addingTheTariffMyOnlineToTheBasket);
         step("Проверить в корзине добавление двух тарифов", () ->
             $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }

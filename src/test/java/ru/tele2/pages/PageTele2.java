@@ -50,7 +50,7 @@ public class PageTele2 {
         step("Нажать на кнопку [Продолжить]", () ->
                 $(byTagAndText("a", "Продолжить")).click());
     }
-    public static void AddingTheTariffMyOnlineToTheBasket() {
+    public static void addingTheTariffMyOnlineToTheBasket() {
         step("Нажать на тариф [Мой онлайн]", () ->
                 $(byTagAndText("h3", "Мой онлайн")).click());
         step("Нажать на кнопку [Купить SIM]", () ->
