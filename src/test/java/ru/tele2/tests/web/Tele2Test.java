@@ -17,17 +17,17 @@ import static io.qameta.allure.Allure.step;
 @Tag("web")
 public class Tele2Test extends TestBase{
 
-     @Test
-     @DisplayName("Проверка поисковой строки")
-     void searchStringsTests() {
-        step("Заходим на страницу неавторизованного абонента",
-            PageTele2::unauthorizedApplicantPage);
-        step("Нажимаем на кнопку [Поиск]" , () ->
-            $(".header-navbar-search").click());
-        step("В строку поиска вводим [Обмен минут на кино] и нажимаем на Enter", () ->
-            $("#search-text").setValue("Обмен минут на кино").pressEnter());
-        step("В поисковой странице проверяем отображение [Обмен минут на кино]", () ->
-            $(".search-results__items").shouldHave(text("Обмен минут на кино")));
+    @Test
+    @DisplayName("Проверка поисковой строки")
+    void searchStringsTests() {
+       step("Заходим на страницу неавторизованного абонента",
+           PageTele2::unauthorizedApplicantPage);
+       step("Нажимаем на кнопку [Поиск]" , () ->
+           $(".header-navbar-search").click());
+       step("В строку поиска вводим [Обмен минут на кино] и нажимаем на Enter", () ->
+           $("#search-text").setValue("Обмен минут на кино").pressEnter());
+       step("В поисковой странице проверяем отображение [Обмен минут на кино]", () ->
+           $(".search-results__items").shouldHave(text("Обмен минут на кино")));
     }
 
     @Test
