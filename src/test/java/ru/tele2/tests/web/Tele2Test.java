@@ -16,6 +16,7 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("web")
 public class Tele2Test extends TestBase{
+
      @Test
      @DisplayName("Проверка поисковой строки")
      void searchStringsTests() {
@@ -28,6 +29,7 @@ public class Tele2Test extends TestBase{
         step("В поисковой странице проверяем отображение [Обмен минут на кино]", () ->
             $(".search-results__items").shouldHave(text("Обмен минут на кино")));
     }
+
     @Test
     @DisplayName("Проверка смены региона")
     void region() {
@@ -42,6 +44,7 @@ public class Tele2Test extends TestBase{
         step("Проверяем отображение измененного региона", () ->
             $("#regionSearchOpener").shouldHave(text("Свердловская область")));
     }
+
     @Test
     @DisplayName("Проверка авторизации")
     void authorization() {
@@ -60,6 +63,7 @@ public class Tele2Test extends TestBase{
         step("Проверяем ФИО абонента", () ->
             $(".dashboard-container__row").shouldHave(text("Руслан")));
         }
+
     @Test
     @DisplayName("Проверка тарифа [Мой онлайн+ 12_2021]")
     void tariff(){
@@ -92,6 +96,7 @@ public class Tele2Test extends TestBase{
         step("Проверить в корзине добавление двух тарифов", () ->
             $(".header-navbar-cart").shouldHave(text("В корзине 2 товара")));
     }
+
     @Test
     @DisplayName("Удаление тарифа из корзины")
     void removingTariffFromTheBasket() {
@@ -105,7 +110,8 @@ public class Tele2Test extends TestBase{
             $(".icon-t2-trash-24").click());
         step("Проверить отсутствие тарифов в корзине", () ->
             $(".shop-cart2__cart-body").shouldHave(text("Ваша корзина пока пуста")));
-}
+    }
+
     @ParameterizedTest
     @DisplayName("Проверка наличия тарифа {1} в поисковой выдаче по запросу {0}")
     @CsvSource({
