@@ -4,15 +4,19 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import ru.tele2.helpers.Attach;
-import ru.tele2.pages.PageTele2;
+import ru.tele2.pages.LoginPage;
+import ru.tele2.pages.MainPage;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import ru.tele2.pages.TariffPage;
 
 public class TestBase {
-    PageTele2 registrationPage = new PageTele2();
+    MainPage mainPage = new MainPage();
+    LoginPage loginPage = new LoginPage();
+    TariffPage tariffPage = new TariffPage();
 
     @BeforeAll
     static void setUp(){
