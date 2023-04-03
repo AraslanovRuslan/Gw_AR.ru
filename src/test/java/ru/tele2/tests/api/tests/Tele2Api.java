@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.tele2.tests.api.models.CartItem;
+import ru.tele2.tests.api.models.request.Item;
+import ru.tele2.tests.api.models.request.RequestItem;
 
 import java.util.Collections;
 
@@ -27,14 +29,17 @@ public class Tele2Api {
     @Test
     @DisplayName("Проверка добавления товара в корзину (API)")
     void addingProductBasket() throws JsonProcessingException {
-        CartItem item = new CartItem(
-                new CartItem.Item(
-                        "internetStoreService",
-                        new CartItem.CatalogId("prod5630018", "sku4990211"),
-                        2
-                )
-        );
-        String body = new ObjectMapper().writeValueAsString(Collections.singletonList(item));
+//        CartItem item = new CartItem(
+//                new CartItem.Item(
+//                        "internetStoreService",
+//                        new CartItem.CatalogId("prod5630018", "sku4990211"),
+//                        2
+//                )
+//        );
+//        String body = new ObjectMapper().writeValueAsString(Collections.singletonList(item));
+        Item item = new Item();
+
+
 
         given()
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0;" +

@@ -1,0 +1,12 @@
+[
+    {
+        "item": {
+            "type": "internetStoreService",
+            "catalogId": {
+                "productId": "prod6480006",
+                "skuId": "sku5820027"
+            },
+            "quantity": 1
+        }
+    }
+]
