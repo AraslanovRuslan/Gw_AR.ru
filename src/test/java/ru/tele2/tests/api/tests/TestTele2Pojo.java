@@ -14,6 +14,8 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
+import static ru.tele2.tests.api.models.requestnew.Specs.request;
+import static ru.tele2.tests.api.models.requestnew.Specs.responseSpec;
 
 public class TestTele2Pojo {
 	
@@ -42,18 +44,29 @@ public class TestTele2Pojo {
 		
 		
 	given()
-				.header("User-Agent", "Mozilla/5.0 (Windows NT 10.0;" +
-						" Win64; x64) AppleWebKit/537.36 (HTML, like Gecko) Chrome/110.0.0.0 " +
-						"Safari/537.36")
-				.contentType(JSON)
-				.body(json)
+			    .spec(request)
+			    .body(json)
 				.when()
-				.put("https://chelyabinsk.tele2.ru/api/cart/items?siteId=siteCHELYABINSK")
+				.put("/cart/items?siteId=siteCHELYABINSK")
 				.then()
-				.log().all()
-				.statusCode(200)
-				.body("meta.status", equalTo("OK"));
+			    .spec(responseSpec)
+			    .log().body();
 	
 	}
 	
 }
+
+//	given()
+//				.header("User-Agent", "Mozilla/5.0 (Windows NT 10.0;" +
+//						" Win64; x64) AppleWebKit/537.36 (HTML, like Gecko) Chrome/110.0.0.0 " +
+//						"Safari/537.36")
+//						.contentType(JSON)
+//						.body(json)
+//						.when()
+//						.put("https://chelyabinsk.tele2.ru/api/cart/items?siteId=siteCHELYABINSK")
+//						.then()
+//						.log().all()
+//						.statusCode(200)
+//						.body("meta.status", equalTo("OK"));
+//
+//						}
