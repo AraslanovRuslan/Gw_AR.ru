@@ -4,18 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.tele2.tests.api.models.requestnew.CatalogId;
-import ru.tele2.tests.api.models.requestnew.Item;
-import ru.tele2.tests.api.models.requestnew.MyObjectItem;
+import ru.tele2.tests.api.models.request.CatalogId;
+import ru.tele2.tests.api.models.request.Item;
+import ru.tele2.tests.api.models.request.MyObjectItem;
+import ru.tele2.tests.api.models.respons.ResponseMeta;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.equalTo;
-import static ru.tele2.tests.api.models.requestnew.Specs.request;
-import static ru.tele2.tests.api.models.requestnew.Specs.responseSpec;
+import static ru.tele2.tests.api.models.request.Specs.request;
+import static ru.tele2.tests.api.models.request.Specs.responseSpec;
 
 public class TestTele2Pojo {
 	
@@ -41,32 +40,28 @@ public class TestTele2Pojo {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(myObjectRootList);
 		System.out.println(json);
-		
-		
-	given()
-			    .spec(request)
-			    .body(json)
+
+		ResponseMeta response = (ResponseMeta) given()
+				.spec(request)
+				.body(json)
 				.when()
 				.put("/cart/items?siteId=siteCHELYABINSK")
 				.then()
-			    .spec(responseSpec)
-			    .log().body();
-	
-	}
-	
-}
+				.spec(responseSpec)
+				.log().body()
+				.extract().as(ResponseMeta.class);
 
-//	given()
-//				.header("User-Agent", "Mozilla/5.0 (Windows NT 10.0;" +
-//						" Win64; x64) AppleWebKit/537.36 (HTML, like Gecko) Chrome/110.0.0.0 " +
-//						"Safari/537.36")
-//						.contentType(JSON)
-//						.body(json)
-//						.when()
-//						.put("https://chelyabinsk.tele2.ru/api/cart/items?siteId=siteCHELYABINSK")
-//						.then()
-//						.log().all()
-//						.statusCode(200)
-//						.body("meta.status", equalTo("OK"));
-//
-//						}
+		assertThat(response.getMeta().getStatus()).isEqualTo("OK");
+
+	}
+	@Test
+    @DisplayName("Проверка ответа со статусом 403 (API)")
+    void testUnauthorizedAccess() {
+             given()
+				.spec(request)
+				.when()
+                .then()
+                .log().all()
+                .statusCode(403);
+    }
+}

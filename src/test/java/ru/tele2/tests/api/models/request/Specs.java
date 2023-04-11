@@ -1,4 +1,4 @@
-package ru.tele2.tests.api.models.requestnew;
+package ru.tele2.tests.api.models.request;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;

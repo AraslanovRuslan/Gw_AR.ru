@@ -10,3 +10,64 @@
         }
     }
 ]
+
+
+{
+    "meta": {
+        "status": "OK"
+    },
+    "data": {
+        "items": [],
+        "restrictions": [
+            {
+                "type": "msisdn",
+                "allowed": 15
+            },
+            {
+                "type": "internetStoreService",
+                "allowed": 5
+            },
+            {
+                "type": "simReplacementSku",
+                "allowed": 1
+            }
+        ],
+        "comments": [
+            {
+                "type": "NOT_FOUND",
+                "subType": null,
+                "catalogId": {
+                    "productId": "prod6480006",
+                    "skuId": "sku5820027",
+                    "serialId": null
+                }
+            }
+        ],
+        "shipping": null,
+        "cartPrice": null,
+        "totalPrice": null,
+        "reserveDuration": 60,
+        "id": "o113549449405",
+        "promocode": null,
+        "reservationToken": null,
+        "maxMsisdnsOrder": 5,
+        "promoDiscount": null
+    }
+}
+
+//package ru.tele2.tests.api.models.respons;
+//
+//import com.fasterxml.jackson.annotation.JsonProperty;
+//
+//public class Meta2 {
+//
+//	@JsonProperty("status")
+//	private String status;
+//
+//	public String getStatus(){
+//		return status;
+//	}
+//
+//	public boolean getMetas() {
+//	}
+}

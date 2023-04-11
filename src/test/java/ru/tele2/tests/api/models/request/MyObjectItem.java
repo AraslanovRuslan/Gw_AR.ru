@@ -1,4 +1,4 @@
-package ru.tele2.tests.api.models.requestnew;
+package ru.tele2.tests.api.models.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
