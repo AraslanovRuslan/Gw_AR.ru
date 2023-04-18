@@ -19,14 +19,14 @@ public class TestBase {
     TariffPage tariffPage = new TariffPage();
 
     @BeforeAll
-    static void setUp(){
-        Configuration.baseUrl =  System.getProperty("base_url", "https://tele2.ru/");
+    static void setUp() {
+        Configuration.baseUrl = System.getProperty("base_url", "https://tele2.ru/");
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "100");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.holdBrowserOpen = true;
         Configuration.timeout = 10000;
-        Configuration.remote =  System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud") +"/wd/hub";
+        Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud") + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
