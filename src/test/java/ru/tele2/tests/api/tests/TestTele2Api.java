@@ -52,7 +52,6 @@ public class TestTele2Api {
 				.extract().as(ResponseMeta.class);
 
 		assertThat(response.getMeta().getStatus()).isEqualTo("OK");
-
 	}
 
 	@Test
